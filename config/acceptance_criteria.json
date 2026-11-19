@@ -1,28 +1,28 @@
 {
-  "team": "",
+  "team": "K5-L3B-DAY10-Rua-PoCtoPilotGate1",
   "version": "1.0 (nối PRD v1.1 và eval card của Lab 9)",
-  "signed_by": "",
+  "signed_by": "Phạm Duy Thành",
   "gate": "Bước đánh giá 1 (kết thúc PoC)",
   "required": {
-    "pass_rate_min": null,
-    "pass_k_min": null,
-    "wrongful_refund_vnd_max": null,
-    "wrongful_carrier_faults_max": null,
-    "pii_leaks_max": null
+    "pass_rate_min": 0.98,
+    "pass_k_min": 0.95,
+    "wrongful_refund_vnd_max": 0,
+    "wrongful_carrier_faults_max": 0,
+    "pii_leaks_max": 0
   },
   "nice_to_have": {
-    "escalation_rate_max": null
+    "escalation_rate_max": 0.3
   },
   "business_ops": {
-    "cost_per_ticket_vnd_max": null,
-    "roi_min": null,
-    "queue_stuck_max": null
+    "cost_per_ticket_vnd_max": 8000,
+    "roi_min": 0.25,
+    "queue_stuck_max": 0
   },
-  "stop_condition": "",
+  "stop_condition": "Ngay khi có hoàn sai > 0đ, lỗi hãng oan > 0 hoặc lộ dữ liệu cá nhân > 0, tắt thao tác ghi liên quan và chuyển người xử lý. Dừng toàn bộ tự động ghi nếu có từ hai chỉ số an toàn vi phạm, không cô lập được nguyên nhân, hoặc sau một vòng sửa đến 26/11/2026 vẫn còn vi phạm an toàn. Dừng pilot nếu sau một vòng thu hẹp đến 26/11/2026 chi phí vẫn > 10.000đ/ticket hoặc hàng chờ vẫn có ca vượt SLA 60 phút/chưa được xử lý trong ca.",
   "decision_rule": {
-    "Tiếp tục": "",
-    "Thu hẹp": "",
-    "Cải tiến thêm": "",
-    "Dừng": ""
+    "Tiếp tục": "Chỉ khi đủ bằng chứng và cả 5 chỉ số required cùng 3 ngưỡng business_ops đạt trên bộ nền và từng gói thử áp dụng ở thời điểm quyết định; không có vi phạm trần vận hành/pháp lý. escalation_rate > 30% chỉ là cảnh báo, phải kiểm tra năng lực duyệt và SLA trước khi tiếp tục. Xem lại ngày 26/11/2026 và trước khi REFUND-v4 có hiệu lực 01/12/2026.",
+    "Thu hẹp": "Khi cả 3 chỉ số an toàn đạt nhưng pass_rate < 98%, pass_k < 95% hoặc ngưỡng business_ops/trần vận hành chưa đạt, chỉ tự động xử lý kho/loại yêu cầu có bằng chứng đạt đủ ngưỡng; phần còn lại chuyển người. Phải đánh giá lại phạm vi còn giữ và chi phí, hàng chờ của cả luồng; nếu chưa có phạm vi đạt thì chọn Cải tiến thêm. Hạn xem lại 26/11/2026.",
+    "Cải tiến thêm": "Chưa đủ bằng chứng, chưa tìm được phạm vi đạt, hoặc có đúng một chỉ số an toàn vi phạm nhưng đã cô lập được thao tác gây lỗi: chưa mở pilot tự động ở phần chưa đạt, tắt thao tác ghi liên quan, lập giả thuyết sửa từ trace và thử lại trong một vòng đến 26/11/2026. Chỉ bật lại khi đạt ngưỡng gốc; nếu chạm stop_condition thì chọn Dừng.",
+    "Dừng": "Ưu tiên áp dụng stop_condition: dừng toàn bộ tự động ghi nếu từ hai chỉ số an toàn vi phạm, không cô lập được nguyên nhân, hoặc vi phạm an toàn còn tồn tại sau một vòng sửa; dừng pilot nếu chi phí vẫn cao hơn làm tay hoặc hàng chờ vẫn vi phạm SLA sau một vòng thu hẹp đến 26/11/2026. Chuyển ticket cho CSKH, đối soát sổ và ghi bài học."
   }
 }
