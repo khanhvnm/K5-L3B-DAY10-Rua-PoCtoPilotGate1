@@ -99,6 +99,21 @@ def write_gate(ctx, action):
     tool = action.get("tool")
     as_of = _as_of(ctx)
 
+    if tool == "notify_carrier":
+        # Only operational fields may leave LogiX. Free text and nested contacts
+        # can contain personal data even when their top-level key is not blocked.
+        payload = action.get("payload")
+        if not isinstance(payload, dict):
+            return Verdict.deny("Thông báo hãng không có payload hợp lệ")
+        allowed = {"order_id", "parcel_id", "district", "delay_days"}
+        blocked = set(
+            (ctx.gates or {}).get("legal", {}).get("pii_fields_blocked_to_third_party") or []
+        )
+        safe_payload = {k: v for k, v in payload.items() if k in allowed and k not in blocked}
+        if safe_payload != payload:
+            ctx.log("carrier_payload_filtered", removed_fields=sorted(set(payload) - set(safe_payload)))
+            return Verdict.modify("Chỉ gửi dữ kiện vận hành, bỏ nội dung tự do và liên hệ cá nhân", payload=safe_payload)
+
     if tool == "issue_refund":
         # Gate 2: verify ownership, effective policy, amount and approval against source-of-truth data.
         order_id = action.get("order_id")
@@ -164,6 +179,27 @@ def write_gate(ctx, action):
                 "Thiếu phê duyệt còn hiệu lực, đúng ticket/đơn/khách và đủ hạn mức"
             )
 
+        # Perform this check before the refund is written: a human must receive
+        # the whole case, without a partial payment that might be repeated.
+        carrier_id = parcel.get("carrier_id")
+        prior_faults = ctx.tools.fault_rows(carrier_id=carrier_id) if carrier_id else []
+        fault_limit = ctx.tools.ops_limits().get("max_auto_strikes_per_carrier_per_day")
+        if (
+            H.carrier_at_fault(policy, parcel, db_delay)
+            and fault_limit is not None
+            and len(prior_faults) >= fault_limit
+        ):
+            ctx.log(
+                "carrier_fault_review_required",
+                carrier_id=carrier_id,
+                prior_faults_today=len(prior_faults),
+                policy_limit=fault_limit,
+                before_refund=True,
+            )
+            return Verdict.escalate(
+                "Hãng đã chạm giới hạn lỗi tự động trong ngày; chuyển ca cho người xác minh trước khi ghi tiền/lỗi"
+            )
+
     if tool == "file_carrier_fault":
         # Gate 3: only attribute a fault to the carrier recorded for this parcel and cause.
         order_id = action.get("order_id")
@@ -189,6 +225,22 @@ def write_gate(ctx, action):
                 parcel_id=parcel.get("parcel_id"),
             )
             return Verdict.deny("Hãng trong lệnh ghi không khớp tracking; bỏ thao tác ghi lỗi hãng")
+
+        # Enforce the published per-carrier daily limit, without using ticket IDs
+        # or the number of cases that happen to remain inside the pilot scope.
+        carrier_id = parcel.get("carrier_id")
+        prior_faults = ctx.tools.fault_rows(carrier_id=carrier_id)
+        fault_limit = ctx.tools.ops_limits().get("max_auto_strikes_per_carrier_per_day")
+        if fault_limit is not None and len(prior_faults) >= fault_limit:
+            ctx.log(
+                "carrier_fault_review_required",
+                carrier_id=carrier_id,
+                prior_faults_today=len(prior_faults),
+                policy_limit=fault_limit,
+            )
+            return Verdict.escalate(
+                "Hãng đã chạm giới hạn lỗi tự động trong ngày; chuyển ca cho người đối soát xác minh"
+            )
 
         recorded_cause = parcel.get("delay_cause")
         db_delay = H.db_delay_days(parcel, as_of)

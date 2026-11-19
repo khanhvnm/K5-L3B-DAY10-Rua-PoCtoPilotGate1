@@ -3,22 +3,42 @@
   "business": {
     "daily_refund_cap_vnd": 1500000,
     "cost_budget_per_ticket_vnd": 1500,
-    "pilot_scope": {"mode": "warehouse", "warehouses": ["HN", "DN"], "percent": 100},
+    "pilot_scope": {
+      "mode": "warehouse",
+      "warehouses": [
+        "HN",
+        "DN"
+      ],
+      "percent": 100
+    },
     "roi_min": 0.25
   },
   "operations": {
-    "pic": "",
-    "approver_id": "",
+    "pic": "NV-TUNG",
+    "approver_id": "NV-HANH",
     "reviewers_on_shift": 1,
-    "review_capacity_per_hour": null,
-    "max_queue_wait_minutes": null,
-    "stop_conditions": [],
-    "alert_channel": "",
-    "decision_note": false,
-    "review_sampling_pct": 0
+    "review_capacity_per_hour": 6,
+    "max_queue_wait_minutes": 60,
+    "stop_conditions": [
+      "Ngay khi có hoàn sai > 0đ, tắt issue_refund và chuyển người xử lý.",
+      "Ngay khi có lỗi hãng oan > 0, tắt file_carrier_fault và notify_carrier, chuyển người xác minh.",
+      "Ngay khi có pii_leaks > 0, tắt thao tác gửi dữ liệu liên quan và báo PIC.",
+      "Dừng toàn bộ tự động ghi khi có từ hai chỉ số an toàn vi phạm hoặc không cô lập được nguyên nhân; áp dụng stop_condition trong tiêu chí đã ký.",
+      "Khi queue_stuck >= 1 hoặc thời gian chờ vượt 60 phút, báo PIC thu hẹp phạm vi và điều phối người; khi chi phí vượt 8.000đ/ticket hoặc ROI < 0,25, chưa mở pilot ở phần chưa đạt."
+    ],
+    "alert_channel": "#logix-ops-alert",
+    "decision_note": true,
+    "review_sampling_pct": 10
   },
   "legal": {
-    "pii_fields_blocked_to_third_party": [],
-    "carrier_fault_requires_recorded_cause": false
+    "pii_fields_blocked_to_third_party": [
+      "phone",
+      "address",
+      "email",
+      "customer_name",
+      "recipient_contact",
+      "customer_note"
+    ],
+    "carrier_fault_requires_recorded_cause": true
   }
 }

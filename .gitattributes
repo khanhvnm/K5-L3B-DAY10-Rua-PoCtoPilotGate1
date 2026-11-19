@@ -1,0 +1,8 @@
+# These files participate in byte-level integrity checks or submission hashes.
+# Preserve their exact bytes when committing and checking out on any platform.
+/data/** -text
+/incidents/** -text
+/lab10/** -text
+/tests/** -text
+/config/** -text
+/submission/** -text
