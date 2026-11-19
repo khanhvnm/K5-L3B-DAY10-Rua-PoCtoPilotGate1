@@ -1,4 +1,4 @@
-﻿# Phiếu A · Tiêu chí và cách đo · Khối 1 (phút 15–65)
+# Phiếu A · Tiêu chí và cách đo · Khối 1 (phút 15–65)
 
 **Bàn:** ______ · **Người cầm bút chính:** vai Sản phẩm và kinh doanh (câu 1.3: Kỹ sư cổng; câu 1.2, 1.4: Vận hành và pháp lý)
 
@@ -50,12 +50,12 @@ trợ lý có đang gây thiệt hại cho bên ngoài LogiX không; không có 
 
 | | Offline, cho MỘT bước (câu 1.3) | Telemetry production (câu 1.4) |
 |---|---|---|
-| **Bước / hành vi được đo** | Quyết định ghi lỗi hãng: có ghi lỗi hay không; nếu có, chọn đúng hãng và kiện hàng. | |
-| **Thước đo** (một câu, có đơn vị) | Tỷ lệ quyết định ghi lỗi hãng khớp hoàn toàn với nhãn chuẩn, tính theo phần trăm ticket–seed. | |
-| **Dữ liệu** (lấy ở đâu, bao nhiêu, ai gán nhãn) | Lỗi hãng thực tế lấy từ trace/sổ lỗi của lần chạy; danh sách kỳ vọng lấy từ label.faults trong data/tickets.jsonl. Nhãn do bộ dữ liệu Lab cung cấp; nhóm kiểm tra chéo hãng, kiện hàng và nguyên nhân với tracking trong data/world.json. Dùng các ticket có nhãn, qua 5 seed của bộ nền. | |
-| **Cách tính** (công thức, mẫu số, cách xử lý ca thiếu dữ liệu) | Với mỗi ticket–seed đã tới bước quyết định lỗi hãng, so sánh toàn bộ cặp (carrier_id, parcel_id) thực tế với label.faults. Số ca khớp hoàn toàn / tổng ca đủ điều kiện có nhãn × 100%. Ca không có nhãn hoặc không tới bước này được loại khỏi mẫu số và đếm riêng; không tính “không ghi lỗi” là đúng nếu nhãn yêu cầu phải ghi. | |
-| **Khung thời gian / ngưỡng báo động** | (không áp dụng) | |
-| **Điểm mù** (thước đo này KHÔNG thấy gì) | Không đo số tiền hoàn có đúng không, nội dung trả lời khách có khớp sổ không, hoặc hàng chờ chuyển người có bị ùn không. | |
+| **Bước / hành vi được đo** | Quyết định ghi lỗi hãng: có ghi lỗi hay không; nếu có, chọn đúng hãng và kiện hàng. | Phản hồi từ bên ngoài (hãng vận chuyển, shop, khách hàng) và kết quả đối soát sổ sách đối với các ca trợ lý đã tự xử lý hoàn tiền hoặc ghi lỗi hãng trong production. |
+| **Thước đo** (một câu, có đơn vị) | Tỷ lệ quyết định ghi lỗi hãng khớp hoàn toàn với nhãn chuẩn, tính theo phần trăm ticket–seed. | Tỷ lệ ca trợ lý đã ra quyết định bị bên ngoài khiếu nại/phản bác (hãng khiếu nại ghi lỗi oan, shop/khách mở lại ticket) hoặc bị kế toán gắn cờ lệch sổ khi đối soát, tính theo phần trăm tổng số ca trợ lý tự xử lý. |
+| **Dữ liệu** (lấy ở đâu, bao nhiêu, ai gán nhãn) | Lỗi hãng thực tế lấy từ trace/sổ lỗi của lần chạy; danh sách kỳ vọng lấy từ label.faults trong data/tickets.jsonl. Nhãn do bộ dữ liệu Lab cung cấp; nhóm kiểm tra chéo hãng, kiện hàng và nguyên nhân với tracking trong data/world.json. Dùng các ticket có nhãn, qua 5 seed của bộ nền. | Không có nhãn chuẩn sẵn; dùng tín hiệu thay nhãn gồm: (1) log quyết định hoàn tiền và ghi lỗi hãng của trợ lý trong production, (2) ticket mở lại (re-open) hoặc khiếu nại từ shop/hãng trên hệ thống CSKH, và (3) biên bản đối soát lệch sổ hàng tuần của chị Oanh (kế toán). Lấy toàn bộ các ca trợ lý tự xử lý trong kỳ theo dõi. |
+| **Cách tính** (công thức, mẫu số, cách xử lý ca thiếu dữ liệu) | Với mỗi ticket–seed đã tới bước quyết định lỗi hãng, so sánh toàn bộ cặp (carrier_id, parcel_id) thực tế với label.faults. Số ca khớp hoàn toàn / tổng ca đủ điều kiện có nhãn × 100%. Ca không có nhãn hoặc không tới bước này được loại khỏi mẫu số và đếm riêng; không tính “không ghi lỗi” là đúng nếu nhãn yêu cầu phải ghi. | Số ca trợ lý tự xử lý bị khiếu nại lại hoặc bị gắn cờ lệch sổ / tổng số ca trợ lý tự xử lý hoàn tất trong kỳ × 100%. Các ca đang chờ người duyệt (escalate) hoặc chưa tới kỳ đối soát của hãng/shop được loại khỏi mẫu số và theo dõi riêng; một ca vừa bị khiếu nại vừa lệch sổ chỉ tính 1 lần ở tử số. |
+| **Khung thời gian / ngưỡng báo động** | (không áp dụng) | Khung thời gian: theo dõi hàng ngày (với ticket mở lại/khiếu nại nóng) và chốt tổng hợp hàng tuần (khớp lịch đối soát của chị Oanh). Ngưỡng báo động: báo động ngay nếu phát hiện ≥ 1 ca ghi lỗi oan cho hãng hoặc hoàn tiền sai được xác nhận (tỷ lệ sự cố > 0%). |
+| **Điểm mù** (thước đo này KHÔNG thấy gì) | Không đo số tiền hoàn có đúng không, nội dung trả lời khách có khớp sổ không, hoặc hàng chờ chuyển người có bị ùn không. | Không phát hiện được các ca trợ lý hoàn thừa cho khách/shop hoặc bỏ sót không ghi lỗi hãng mà các bên liên quan im lặng không khiếu nại, cũng như độ trễ trước khi đến kỳ đối soát tuần. |
 
 **Ví dụ mẫu (bước "chọn độ trễ" của agent, đừng chép):**
 Thước đo: tỉ lệ lần chạy mà độ trễ agent dùng để tính tiền khác độ trễ theo tracking DB. Dữ liệu: sự kiện `proposal.delay_days_used`
