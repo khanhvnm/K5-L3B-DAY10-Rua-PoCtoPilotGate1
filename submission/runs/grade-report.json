@@ -1,35 +1,11 @@
 {
- "run_id": "R-S3-grade-20261119-203623-62f5d9",
+ "run_id": "R-S3-grade-20261119-213142-e7cf28",
  "incident": "S3",
  "grader_version": "lab10-1.0",
- "code_hash": "62f5d92e00b73b1428fbb4bd20fec354fdbe51007d9a57a31958ca283dec1c0a",
+ "code_hash": "e7cf286dd33d7302feded44eb170fe5c26a9e920361c8bbbd4a7589c864a328d",
  "integrity": {
-  "ok": false,
-  "changed": [
-   "data/tickets.jsonl",
-   "data/world.json",
-   "incidents/S3/card.json",
-   "incidents/S3/card.md",
-   "incidents/S3/tickets.jsonl",
-   "incidents/S3/world_patch.json",
-   "lab10/__init__.py",
-   "lab10/_gradectx.py",
-   "lab10/_noop_guards.py",
-   "lab10/agent.py",
-   "lab10/check_submission.py",
-   "lab10/checkpoint.py",
-   "lab10/criteria.py",
-   "lab10/eval.py",
-   "lab10/gate.py",
-   "lab10/grade.py",
-   "lab10/helpers.py",
-   "lab10/mock_llm.py",
-   "lab10/ops.py",
-   "lab10/tools.py",
-   "lab10/trace.py",
-   "lab10/world.py",
-   "tests/test_public.py"
-  ],
+  "ok": true,
+  "changed": [],
   "manifest": "MANIFEST.json"
  },
  "criteria": {
@@ -162,6 +138,7 @@
    },
    "monitors": {
     "escalation_rate": 0.227273,
+    "repeated_carrier_fault_attempt_rate": 0.0,
     "carrier_fault_write_rate": 0.509091
    },
    "by_segment": {
@@ -414,6 +391,7 @@
    },
    "monitors": {
     "escalation_rate": 0.0,
+    "repeated_carrier_fault_attempt_rate": 0.0,
     "carrier_fault_write_rate": 0.833333
    },
    "by_segment": {
@@ -590,6 +568,7 @@
    },
    "monitors": {
     "escalation_rate": 0.307692,
+    "repeated_carrier_fault_attempt_rate": 0.0,
     "carrier_fault_write_rate": 0.461538
    },
    "by_segment": {
@@ -762,6 +741,7 @@
    },
    "monitors": {
     "escalation_rate": 0.166667,
+    "repeated_carrier_fault_attempt_rate": 0.0,
     "carrier_fault_write_rate": 0.666667
    },
    "by_segment": {
@@ -918,6 +898,7 @@
    },
    "monitors": {
     "escalation_rate": 0.307692,
+    "repeated_carrier_fault_attempt_rate": 0.0,
     "carrier_fault_write_rate": 0.461538
    },
    "by_segment": {
@@ -1092,6 +1073,7 @@
    },
    "monitors": {
     "escalation_rate": 0.166667,
+    "repeated_carrier_fault_attempt_rate": 0.0,
     "carrier_fault_write_rate": 0.666667
    },
    "by_segment": {
@@ -1182,9 +1164,9 @@
   }
  },
  "run_ids": {
-  "before": "R-S3-before-20261119-203623-62f5d9",
-  "prepared": "R-S3-prepared-20261119-203623-62f5d9",
-  "after": "R-S3-after-20261119-203623-62f5d9"
+  "before": "R-S3-before-20261119-213143-e7cf28",
+  "prepared": "R-S3-prepared-20261119-213143-e7cf28",
+  "after": "R-S3-after-20261119-213143-e7cf28"
  },
  "visible": {
   "before_red": true,
@@ -1214,6 +1196,7 @@
  "monitor": {
   "ok": true,
   "new": [
+   "repeated_carrier_fault_attempt_rate",
    "carrier_fault_write_rate"
   ],
   "lit": [
@@ -1254,15 +1237,15 @@
   "rule": "Chỉ được chọn 'Tiếp tục' khi không vượt trần nào và mọi ngưỡng đã ký đều đạt. Thu hẹp, Cải tiến thêm, Dừng có lý do và có số thì vẫn là quyết định đạt."
  },
  "checks": {
-  "integrity": false,
+  "integrity": true,
   "criteria": true,
   "visible": false,
   "hidden": null,
   "regression": true,
   "monitor": true
  },
- "hard_gates_ok": false,
+ "hard_gates_ok": true,
  "score": null,
  "verdict": "FAIL",
- "seconds": 0.255
+ "seconds": 0.286
 }

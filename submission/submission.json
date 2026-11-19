@@ -9,8 +9,8 @@
   "decision_v1": "Thu hẹp",
   "decision_v2": "Cải tiến thêm",
   "three_lines": {
-    "environment_assumption": "Một giả định về môi trường mà thiết kế của đội đang dựa vào, có thể sai ngoài thực tế: nguyên nhân tracking được ghi chính xác, cập nhật kịp thời và đủ để kết luận trách nhiệm của hãng; thực tế cause CARRIER có thể chưa đủ bằng chứng nghiệp vụ để tạo khiếu nại.",
-    "reduce_or_prevent": "Gate của đội chỉ GIẢM khả năng hay thực sự NGĂN được tác hại? Vì sao: gate chặn policy cũ và tracking thiếu nguyên nhân, nhưng chưa ngăn được lệnh ghi lỗi khi cause CARRIER có mặt mà hành động vẫn không phù hợp; monitor chỉ phát hiện tần suất, không xác minh tính đúng đắn.",
-    "measure_in_pilot": "Vì data là mock, cần đo lại gì trong pilot thật trước Bước đánh giá 2: cần đối chiếu từng lỗi hãng với kết luận của hãng/shop, đo độ chính xác và độ mới của tracking cause theo kho/hãng, đồng thời theo dõi chi phí, ROI và tải hàng chờ khi có người xác minh."
+    "environment_assumption": "Sổ lỗi cùng hãng/ngày đã đồng bộ các ca tự động và ca ngoài phạm vi do người xử lý; tracking/policy được cập nhật đúng lúc và ca chuyển người được PIC tiếp nhận.",
+    "reduce_or_prevent": "Cổng chuyển ca trước khi ghi tiền/lỗi khi đã chạm giới hạn lỗi tự động cùng hãng/ngày và bỏ nội dung tự do khỏi thông báo hãng; chỉ GIẢM khả năng gây hại vì dữ liệu nguồn và lịch sử ca ngoài phạm vi vẫn có thể thiếu hoặc sai.",
+    "measure_in_pilot": "Đo tỷ lệ lỗi hãng được đối soát xác nhận, độ đầy đủ của sổ lỗi liên nguồn, thời gian nhận/xử lý ca chuyển so với SLA 60 phút, chi phí mỗi ticket so với 8.000đ và ROI so với 0,25 theo kho/giờ."
   }
 }
