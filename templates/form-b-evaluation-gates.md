@@ -279,10 +279,9 @@ python3 -m unittest discover -s tests
 
 | # | Cổng (hàm và nhánh, ví dụ `write_gate` khi `tool == "issue_refund"`) | Ứng với dòng nào ở B6 / B4 | Chặn điều gì, dựa vào nguồn sự thật nào | Mã lần chạy `base · after` | Ca đang đúng nào bị hỏng? (phải là "không") |
 |---|---|---|---|---|---|
-| 1 | | | | | |
-| 2 | | | | | |
-| 3 | | | | | |
-
+| 1 | `pre_guard(ctx)`: chọn và ghim policy có hiệu lực tại `ctx.as_of`; nếu không có policy hiệu lực thì chuyển người duyệt. | B4 · `INVALID`: policy cũ/hết hiệu lực vẫn bị dùng; B6 · Kỹ thuật: policy lệch phiên bản làm quyết định sai. | Ngăn agent dùng policy cũ hoặc không xác định; đối chiếu danh sách policy và khoảng hiệu lực bằng `lookup_policies()` + ngày hệ thống, rồi ghim `policy_id` cho ticket. | Chưa chạy; điền run ID sau khi chạy `base · after`. | Chưa xác minh hồi quy; xác nhận các ca đúng không bị hỏng sau lần chạy. |
+| 2 | `write_gate(ctx, action)` khi `tool == "issue_refund"`: xác minh đơn/khách, tính quyền lợi từ tracking và policy, kiểm tra approval hoặc hạn mức tự động. | B4 · `WRONG`: số ngày khách tự khai khác tracking; B6 · Kỹ thuật: model tin lời khách hơn dữ liệu đơn. | Ngăn hoàn sai đối tượng hoặc sai số tiền do claim trong ticket; dùng order/customer trong hệ thống, số ngày tracking và policy hiệu lực; approval phải đúng ticket/đơn/khách, còn hạn và đủ số tiền. | Chưa chạy; điền run ID sau khi chạy `base · after`. | Chưa xác minh hồi quy; xác nhận các ca đúng không bị hỏng sau lần chạy. |
+| 3 | `write_gate(ctx, action)` khi `tool == "file_carrier_fault"`: kiểm tra parcel, carrier, cause và sửa `delay_days` về số từ tracking khi lệch. | B4 · `WRONG` / `INCOMPLETE`: hãng hoặc số ngày không khớp parcel, thiếu nguyên nhân ghi nhận; B6 · Pháp lý: hãng/tài xế bị quy lỗi oan. | Ngăn ghi lỗi hãng dựa trên lời khách hoặc dữ liệu thiếu; đối chiếu parcel và carrier với order, cause đã ghi nhận, số ngày tính từ tracking và điều kiện `carrier_at_fault()` của policy. | Chưa chạy; điền run ID sau khi chạy `base · after`. | Chưa xác minh hồi quy; xác nhận các ca đúng không bị hỏng sau lần chạy. |
 ### B7.2 · Câu 2.7 · Hai bước tránh rò rỉ dữ liệu
 
 Bàn đang chỉnh cổng tới khi 22 ticket bộ nền xanh hết. Nêu 2 bước cụ thể để không "chỉnh trên chính bộ dùng để chấm"
