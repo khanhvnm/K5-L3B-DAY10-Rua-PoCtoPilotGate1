@@ -1,12 +1,16 @@
 {
-  "team": "",
-  "members": [],
-  "incident": "",
-  "decision_v1": "",
-  "decision_v2": "",
+  "team": "K5-L3B-DAY10-Rua-PoCtoPilotGate1",
+  "members": [
+    "VuNamKhanh-2A202604112",
+    "NguyenTuanAnh-2A202604089",
+    "PhamDuyThanh-2A202604075"
+  ],
+  "incident": "S3",
+  "decision_v1": "Thu hẹp",
+  "decision_v2": "Cải tiến thêm",
   "three_lines": {
-    "environment_assumption": "",
-    "reduce_or_prevent": "",
-    "measure_in_pilot": ""
+    "environment_assumption": "Một giả định về môi trường mà thiết kế của đội đang dựa vào, có thể sai ngoài thực tế: nguyên nhân tracking được ghi chính xác, cập nhật kịp thời và đủ để kết luận trách nhiệm của hãng; thực tế cause CARRIER có thể chưa đủ bằng chứng nghiệp vụ để tạo khiếu nại.",
+    "reduce_or_prevent": "Gate của đội chỉ GIẢM khả năng hay thực sự NGĂN được tác hại? Vì sao: gate chặn policy cũ và tracking thiếu nguyên nhân, nhưng chưa ngăn được lệnh ghi lỗi khi cause CARRIER có mặt mà hành động vẫn không phù hợp; monitor chỉ phát hiện tần suất, không xác minh tính đúng đắn.",
+    "measure_in_pilot": "Vì data là mock, cần đo lại gì trong pilot thật trước Bước đánh giá 2: cần đối chiếu từng lỗi hãng với kết luận của hãng/shop, đo độ chính xác và độ mới của tracking cause theo kho/hãng, đồng thời theo dõi chi phí, ROI và tải hàng chờ khi có người xác minh."
   }
 }
