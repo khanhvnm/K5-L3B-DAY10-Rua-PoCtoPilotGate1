@@ -155,9 +155,9 @@ git add config/acceptance_criteria.json config/acceptance_criteria.lock && git c
 
 | Mục | Điền |
 |---|---|
-| Đã ký lúc (giờ máy in hoặc `signed_at` trong `config/acceptance_criteria.lock`) | `2026-11-19T15:46:00` (giá trị nguyên văn trong lock; không kèm múi giờ). Đã chạy `python -m lab10.criteria verify`, kết quả `ok: true`; chưa chạy đánh giá. |
-| Mã commit `Sign acceptance criteria` (7 ký tự đầu, `git log --oneline -1`) | `9515748` — commit chứa `config/acceptance_criteria.json` và `config/acceptance_criteria.lock`. Tra lại bằng `git log --oneline --grep="^Sign acceptance criteria$"` nếu đã có commit tài liệu mới hơn. |
-| Đã push lên `origin main` thành công? | **Chưa.** Kiểm duyệt tự động chặn lệnh push vì chưa có xác nhận rõ ràng cho việc xuất nội dung lên repo ngoài và cập nhật nhánh dùng chung. Đích cần xác nhận: `https://github.com/khanhvnm/K5-L3B-DAY10-Rua-PoCtoPilotGate1`, nhánh `main`. |
+| Đã ký lúc (giờ máy in hoặc `signed_at` trong `config/acceptance_criteria.lock`) | `2026-11-19T15:57:45`  |
+| Mã commit `Sign acceptance criteria` (7 ký tự đầu, `git log --oneline -1`) | `19dc58a` |
+| Đã push lên `origin main` thành công? | Có. |
 
 SHA-256 của bản đã ký: `abe188b49400c3358eff24b66830b979ce7e7f9b17427b5888402b7758befadb`.
 
