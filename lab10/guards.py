@@ -191,6 +191,17 @@ def write_gate(ctx, action):
             return Verdict.deny("Hãng trong lệnh ghi không khớp tracking; bỏ thao tác ghi lỗi hãng")
 
         recorded_cause = parcel.get("delay_cause")
+        legal_gates = (ctx.gates or {}).get("legal", {})
+        if legal_gates.get("carrier_fault_requires_recorded_cause", False) and not recorded_cause:
+            ctx.log(
+                "carrier_fault_gate",
+                result="cause_not_recorded",
+                order_id=order_id,
+                parcel_id=parcel.get("parcel_id"),
+            )
+            return Verdict.deny(
+                "Tracking chưa ghi rõ nguyên nhân; không quy lỗi cho hãng"
+            )
         db_delay = H.db_delay_days(parcel, as_of)
         if (
             not recorded_cause

@@ -7,18 +7,22 @@
     "roi_min": 0.25
   },
   "operations": {
-    "pic": "",
-    "approver_id": "",
+    "pic": "TV3 (Kỹ sư vận hành)",
+    "approver_id": "NV-HANH",
     "reviewers_on_shift": 1,
-    "review_capacity_per_hour": null,
-    "max_queue_wait_minutes": null,
-    "stop_conditions": [],
-    "alert_channel": "",
-    "decision_note": false,
-    "review_sampling_pct": 0
+    "review_capacity_per_hour": 6,
+    "max_queue_wait_minutes": 60,
+    "stop_conditions": [
+      "Dừng tự động và chuyển sang người duyệt nếu wrongful_refund_vnd > 0.",
+      "Dừng ghi lỗi hãng nếu wrongful_carrier_faults > 0 hoặc tracking thiếu nguyên nhân.",
+      "Dừng pilot và báo PIC nếu pii_leaks > 0 hoặc hàng chờ vượt SLA 60 phút."
+    ],
+    "alert_channel": "Kênh nhóm LogiX-VN / báo PIC trực",
+    "decision_note": true,
+    "review_sampling_pct": 10
   },
   "legal": {
-    "pii_fields_blocked_to_third_party": [],
-    "carrier_fault_requires_recorded_cause": false
+    "pii_fields_blocked_to_third_party": ["phone", "address", "email", "customer_name"],
+    "carrier_fault_requires_recorded_cause": true
   }
 }

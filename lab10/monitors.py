@@ -19,7 +19,23 @@ def escalation_rate(trials):
     return sum(t["status"] == "escalated" for t in trials) / max(1, len(trials))
 
 
+def carrier_fault_write_rate(trials):
+    """Share of unlabelled trials that emit a carrier-fault write action."""
+    if not trials:
+        return 0.0
+    writes = 0
+    for trial in trials:
+        events = trial.get("events", [])
+        if any(
+            event.get("type") == "tool" and event.get("tool") == "file_carrier_fault"
+            for event in events
+        ):
+            writes += 1
+    return writes / len(trials)
+
+
 MONITORS = {
     "escalation_rate": escalation_rate,     # có sẵn; KHÔNG tính là metric mới của đội
+    "carrier_fault_write_rate": carrier_fault_write_rate,
 }
 STARTER_MONITORS = ("escalation_rate",)
