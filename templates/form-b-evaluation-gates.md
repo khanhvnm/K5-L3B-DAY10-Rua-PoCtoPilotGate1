@@ -406,22 +406,22 @@ bao nhiêu thời gian? (3) Có phần nào của dự án không nên làm ti�
 
 | | **v1** (phút 105–115, TRƯỚC khi nhận thẻ sự cố) |
 |---|---|
-| Commit ký tiêu chí (message `Sign acceptance criteria`; hash commit, tuỳ chọn) | |
-| Hash chốt cổng vòng 1 (8 ký tự lệnh `lab10.checkpoint` in ra, tuỳ chọn) | |
-| Mã lần chạy dùng làm bằng chứng | bộ nền, mốc base: ________ · bộ nền với cổng vòng 1 (prepared): ________ |
-| Còn dòng "vượt trần" nào trong report? (hàng chờ, chi phí, ROI, trần tiền, pháp lý) | |
-| Kho hoặc hãng có số xấu nhất: ____. Nếu chỉ nhìn phân khúc này, quyết định có đổi không? *(Đọc khối "theo kho và hãng" ở cuối output `lab10.eval` / `lab10.grade`, hoặc mục `by_segment` trong `report.json`.)* | |
-| Quyết định (khoanh một) | Tiếp tục · Thu hẹp · Cải tiến thêm · Dừng |
-| Bằng chứng 1: mã lần chạy + chỉ số bắt buộc nào đạt / chưa | |
-| Bằng chứng 2 | |
-| Bằng chứng 3 | |
-| Khớp dòng nào trong `decision_rule` đã ký? | |
-| Nếu Thu hẹp: cắt phần nào, vì sao | |
-| Nếu Cải tiến thêm: giả thuyết cụ thể + hạn | |
-| Nếu Dừng: bài học ghi lại | |
-| Một bằng chứng còn thiếu (thứ bộ nền chưa đo được) | |
-| Ngày quyết định lại (trừ khi Dừng) | |
-| PIC ký | |
+| Commit ký tiêu chí (message `Sign acceptance criteria`; hash commit, tuỳ chọn) | `c413f9c` · lock hash `abe188b4` · ký 2026-11-19 15:57:45. |
+| Hash chốt cổng vòng 1 (8 ký tự lệnh `lab10.checkpoint` in ra, tuỳ chọn) | `cb9f354e`. |
+| Mã lần chạy dùng làm bằng chứng | base: `R-base-before-20261119-161343-bde05c` · prepared: `R-base-prepared-20261119-170938-6eb725`. |
+| Còn dòng "vượt trần" nào trong report? (hàng chờ, chi phí, ROI, trần tiền, pháp lý) | Không có vượt trần tổng thể: hoàn tự động 155.000đ/ngày ≤ trần 1.500.000đ; chi phí 5.942đ/ticket ≤ 8.000đ; ROI 0,68 ≥ 0,25; hàng chờ ùn 0 (SLA 60 phút); PII 0. `escalation_rate` 0,3077 vượt ngưỡng khuyến nghị 0,30 một chút, nhưng 4 ca/ngày, công suất 6 ca/giờ, chờ lâu nhất 0 phút. Riêng kho `?`: 10.359đ/ticket, cao hơn chi phí làm tay 10.000đ và trần 8.000đ. |
+| Kho hoặc hãng có số xấu nhất: ____. Nếu chỉ nhìn phân khúc này, quyết định có đổi không? *(Đọc khối "theo kho và hãng" ở cuối output `lab10.eval` / `lab10.grade`, hoặc mục `by_segment` trong `report.json`.)* | Kho `?`: 5 trials, chi phí 10.359đ/ticket, 100% chuyển người; không có lỗi an toàn. Nếu chỉ xét phân khúc này thì không tự động hóa, chuyển làm tay vì chi phí cao hơn làm tay và mẫu nhỏ. HN: 35 trials, pass 1,0, chi phí 1.993đ; DN: 25 trials, pass 1,0, chi phí 4.586đ. Hãng VNX: 10 trials, pass 1,0, không có hoàn sai/lỗi hãng oan/lộ PII. |
+| Quyết định (khoanh một) | **Thu hẹp**: tiếp tục pilot tự động với đơn xác minh được thuộc kho HN/DN; ca không xác minh được kho/đơn (nhóm `?`) chuyển quy trình thủ công. Trước rollout xác nhận đường xử lý fail-closed cho ca thiếu kho. |
+| Bằng chứng 1: mã lần chạy + chỉ số bắt buộc nào đạt / chưa | `R-base-prepared-20261119-170938-6eb725`: pass_rate 1,0 ≥ 0,98; pass_k 1,0 ≥ 0,95; wrongful_refund_vnd 0; wrongful_carrier_faults 0; pii_leaks 0 — cả 5 chỉ số bắt buộc đạt. |
+| Bằng chứng 2 | Cùng run: cost_per_ticket 5.942đ ≤ 8.000đ; ROI 0,68 ≥ 0,25; queue_stuck 0 — cả 3 ngưỡng business_ops đạt. Escalation 0,3077 > 0,30 nhưng hàng chờ 4 ca/ngày, công suất 6 ca/giờ, chờ tối đa 0 phút; theo decision_rule đây là cảnh báo cần theo dõi. |
+| Bằng chứng 3 | Phân khúc `?` có 5 trials, 10.359đ/ticket (> 10.000đ làm tay và > 8.000đ trần nhóm); HN/DN đều pass 1,0, chi phí lần lượt 1.993đ/4.586đ. Dữ liệu này ủng hộ giữ pilot ở HN/DN và để ca không rõ kho làm tay. |
+| Khớp dòng nào trong `decision_rule` đã ký? | `Thu hẹp`: giữ phạm vi có bằng chứng đạt, đưa phần không đạt/nghi ngờ sang người. An toàn đạt đủ; giới hạn phân khúc `?` do chi phí phân khúc vượt trần và cao hơn làm tay. |
+| Nếu Thu hẹp: cắt phần nào, vì sao | Không tự động xử lý ca thiếu/không tra được kho; giữ đơn xác minh thuộc HN/DN. Chỉ mở lại ca `?` khi xác định được nguồn kho, có cách loại ca ngoài phạm vi, và chạy đánh giá riêng đạt trần chi phí. |
+| Nếu Cải tiến thêm: giả thuyết cụ thể + hạn | Không chọn. |
+| Nếu Dừng: bài học ghi lại | Không chọn; các chỉ số an toàn và ngưỡng business_ops trên mốc prepared đều đạt. |
+| Một bằng chứng còn thiếu (thứ bộ nền chưa đo được) | 5 trials ở kho `?` còn ít và chi phí cao; chưa có bằng chứng từ pilot thật/ca cao điểm về độ ổn định, tải queue và hành vi với đơn không tra được kho. Cần xác nhận fail-closed của phạm vi và bổ sung dữ liệu trước khi mở rộng. |
+| Ngày quyết định lại (trừ khi Dừng) | 2026-11-26, hoặc trước khi REFUND-v4 có hiệu lực 2026-12-01. |
+| PIC ký | Phạm Duy Thành (người ký tiêu chí) — cần nhóm xác nhận/ký quyết định v1. |
 
 Xong v1 thì lưu và đẩy một bản (sau mốc này không sửa cột v1):
 
