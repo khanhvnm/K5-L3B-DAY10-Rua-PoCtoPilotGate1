@@ -19,36 +19,23 @@ def escalation_rate(trials):
     return sum(t["status"] == "escalated" for t in trials) / max(1, len(trials))
 
 
-def repeated_carrier_fault_attempt_rate(trials):
-    """Share of trials attempting another automatic strike on a carrier that day."""
-    if not trials:
-        return 0.0
-    return sum(
-        any(
-            e.get("type") == "guard"
-            and e.get("kind") == "carrier_fault_review_required"
-            for e in (t.get("events") or [])
-        )
-        for t in trials
-    ) / len(trials)
-
-
 def carrier_fault_write_rate(trials):
     """Share of unlabelled trials that emit a carrier-fault write action."""
     if not trials:
         return 0.0
-    return sum(
-        any(
+    writes = 0
+    for trial in trials:
+        events = trial.get("events", [])
+        if any(
             event.get("type") == "tool" and event.get("tool") == "file_carrier_fault"
-            for event in (trial.get("events") or [])
-        )
-        for trial in trials
-    ) / len(trials)
+            for event in events
+        ):
+            writes += 1
+    return writes / len(trials)
 
 
 MONITORS = {
     "escalation_rate": escalation_rate,     # có sẵn; KHÔNG tính là metric mới của đội
-    "repeated_carrier_fault_attempt_rate": repeated_carrier_fault_attempt_rate,
     "carrier_fault_write_rate": carrier_fault_write_rate,
 }
 STARTER_MONITORS = ("escalation_rate",)

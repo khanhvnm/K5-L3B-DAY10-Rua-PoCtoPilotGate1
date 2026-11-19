@@ -5,7 +5,7 @@
 - Tên nhóm: Rua
 - Lớp: `L3B`
 - Repo của bàn: `K5-L3B-DAY10-Rua-PoCtoPilotGate1`
-- Thẻ sự cố đã bốc (S1–S8): S3
+- Thẻ sự cố đã bốc (S1–S8): 
 
 ## Thành viên
 
@@ -14,14 +14,11 @@
 |   1 | Vũ Nam Khánh | 2A202604112 | Kỹ sư cổng | x |
 |   2 | Nguyễn Tuấn Anh | 2A202604089 | Vận hành và pháp lý |   |
 |   3 | Phạm Duy Thành | 2A202604075 | Sản phẩm và kinh doanh |   |
+|   4 |           |      |     |             |
 
 Ghi `members` trong `submission/submission.json` theo dạng `"HoVaTen-MSSV"`, khớp bảng trên.
 
 ## Cá nhân
-
-**Xác nhận quyết định v2:** Người thao tác trong phiên trao đổi xác nhận vai Sản phẩm và kinh doanh và chốt **Cải tiến thêm**, chưa mở pilot ở phần chưa đạt, xem lại **26/11/2026**. Xác nhận này không thay việc từng thành viên tự xác nhận đóng góp/exit ticket.
-
-Hai mục Vũ Nam Khánh và Nguyễn Tuấn Anh được giữ nguyên từ bản nháp nhóm đã commit tại `ddb3ca3` (`origin/main`), chưa thay bằng xác nhận cá nhân. Các số liệu 20:36 trong hai mục đó là bằng chứng lịch sử. Phần Phạm Duy Thành được cập nhật theo công việc và xác nhận trong phiên hoàn thiện bài, có khai báo việc dùng AI. Kết quả kiểm tra hiện tại xem Phiếu C và báo cáo cuối trong submission/runs/grade-report.json.
 
 ## VuNamKhanh-2A202604112
 
@@ -65,27 +62,26 @@ Dự thảo để thành viên xác nhận: Em học được rằng ngưỡng a
 
 ### Phần việc phụ trách
 
-Sản phẩm và kinh doanh: tiêu chí chấp nhận ở Phiếu A, phạm vi pilot và chi phí/ROI, quyết định v1 tại Phiếu B mục B8 và quyết định v2 tại Phiếu C mục C12.
+Sản phẩm và kinh doanh: tiêu chí chấp nhận tại Phiếu A, phạm vi pilot, chi phí/ROI và quyết định Gate 1 tại Phiếu B B8, Phiếu C C12.
 
 ### Đóng góp cụ thể
 
-Trong đợt hoàn thiện bài, tôi yêu cầu rà soát toàn bộ dự án theo đề và rubric, sau đó xác nhận cấu hình nhóm đã nêu trong B7.5: PIC NV-TUNG, người duyệt NV-HANH, 1 người trực, công suất 6 ca/giờ, SLA 60 phút, kiểm mẫu 10%, ghi chú quyết định và bảo vệ PII. Giữ phạm vi HN/DN, trần hoàn 1.500.000đ/ngày, trần LLM 1.500đ/ticket và ROI tối thiểu 0,25. Tôi giao trợ lý lựa chọn cách triển khai giới hạn lỗi hãng; bản cuối dùng trần 2 lỗi tự động/hãng/ngày theo ops_limits.
+Rà soát mục tiêu hệ thống, các ngưỡng đã ký và hiệu quả kinh doanh của phương án pilot. Đối chiếu kết quả S3 còn 5 lỗi hãng oan, pass_rate/pass_k = 0,8333, chi phí 8.048đ/ticket và ROI = 0,24 để xác nhận quyết định v2 **Cải tiến thêm**, chưa mở pilot ở phần chưa đạt; xem lại ngày **26/11/2026** theo tiêu chí đã ký. Không thay đổi ngưỡng đã ký để hợp thức hóa kết quả.
 
-Tôi xác nhận chốt v2 **Cải tiến thêm**, chưa mở pilot ở phần chưa đạt và xem lại ngày **26/11/2026** theo tiêu chí đã ký. Căn cứ là S3 còn 5 lỗi hãng oan, pass_rate/pass_k = 0,8333, chi phí 8.048đ/ticket và ROI = 0,24. Không đổi ngưỡng đã ký để hợp thức hóa kết quả. Yêu cầu khôi phục snapshot đúng bằng chứng; kết quả cuối khớp hash gốc, không thay lock hoặc nội dung code vòng 1.
+Trong quá trình hoàn thiện, yêu cầu trợ lý rà soát dự án và giải thích các điểm chưa đạt. Sau rà soát, yêu cầu hoàn nguyên thay đổi code/config/hồ sơ bổ sung về bản main trước 20:54, chỉ giữ cập nhật phần cá nhân này trong TEAM.md.
 
 ### Bằng chứng
 
 - Tiêu chí đã ký: commit `19dc58a`, hash `abe188b4`; Phiếu A A1–A5.
-- Quyết định v1: Phiếu B B8; quyết định v2 và cấu hình đã xác nhận: Phiếu C C11–C12, config/operating_gates.json và submission/submission.json.
-- Báo cáo cuối: `R-S3-grade-20261119-213142-e7cf28`, được gom tại submission/runs/grade-report.json; các chỉ số S3 và bộ nền được đối chiếu trong cùng báo cáo.
-- Snapshot đã khôi phục: checkpoint ok=true, hash chốt `cb9f354e`; submission/manifest.json ghi hash các file đã gom.
+- Phiếu B B8, Phiếu C C12 và submission/submission.json ghi quyết định v1/v2.
+- Báo cáo nhóm đã có trước khi hoàn nguyên: `R-S3-grade-20261119-203623-62f5d9`, tại submission/runs/grade-report.json.
 
 ### Exit ticket
 
-Điều rút ra: quyết định Gate 1 phải dựa đồng thời vào tiêu chí đã ký, tác động tới bên thứ ba và chi phí vận hành. Bộ nền đạt hoặc hồ sơ đủ thành phần không có nghĩa pilot đã sẵn sàng; khi S3 còn lỗi hãng oan và ROI chưa đạt, quyết định phù hợp là Cải tiến thêm.
+Điều rút ra: quyết định kinh doanh cần xem đồng thời ngưỡng đã ký, tác động tới hãng/khách hàng và chi phí vận hành. Bộ nền đạt không có nghĩa pilot đã sẵn sàng; khi S3 còn lỗi hãng oan và ROI chưa đạt, cần chọn Cải tiến thêm.
 
-Điều còn chưa chắc: cách đồng bộ sổ lỗi của các ca ngoài phạm vi pilot với ca tự động, và cần bao nhiêu dữ liệu thật theo kho/hãng để ước lượng ổn định chi phí, tải duyệt và rủi ro trước Gate 2.
+Điều còn chưa chắc: cách đồng bộ lịch sử lỗi hãng của ca tự động và ca xử lý tay, và cần bao nhiêu dữ liệu pilot theo kho/hãng để ước lượng ổn định chi phí và rủi ro trước Gate 2.
 
 ### Sử dụng AI
 
-Dùng Codex hỗ trợ đọc đề và rubric, rà code/tài liệu, sửa cổng và monitor, chạy kiểm tra, khôi phục cách xuống dòng của snapshot đúng hash gốc, cập nhật Phiếu C và gom hồ sơ. Tôi xác nhận cấu hình vận hành và quyết định v2 trong phiên trao đổi; các thao tác code/kiểm tra do trợ lý thực hiện được ghi rõ, không nhận là tự thực hiện thủ công. Các ngưỡng tiêu chí đã ký giữ nguyên; không dùng AI viết xử lý riêng theo mã ticket hoặc câu chữ cụ thể.
+Dùng Codex hỗ trợ đọc đề/rubric, rà code và hồ sơ, giải thích kết quả chi phí/ROI và soạn lại phần cá nhân từ các xác nhận trong phiên trao đổi. Đã yêu cầu hoàn nguyên các thay đổi code/config/hồ sơ bổ sung của đợt rà soát; bản cuối chỉ giữ cập nhật TEAM.md so với main trước 20:54. Tiêu chí đã ký giữ nguyên; không nhận các thao tác code/kiểm thử do AI thực hiện là tự làm thủ công.

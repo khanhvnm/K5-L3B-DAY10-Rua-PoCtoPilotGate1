@@ -2,21 +2,21 @@
 
 *Đây là kết quả TỰ KIỂM TRA của bàn, không phải điểm. Bài được một team chấm tự động chấm lại sau buổi học.*
 
-- Mã lần chạy: `R-S3-grade-20261119-213142-e7cf28` · bàn: `K5-L3B-DAY10-Rua-PoCtoPilotGate1` · grader `lab10-1.0` · 0.286s
-- Ba mốc: base `R-S3-before-20261119-213143-e7cf28` · prepared `R-S3-prepared-20261119-213143-e7cf28` · after `R-S3-after-20261119-213143-e7cf28` (report + trace trong runs/)
+- Mã lần chạy: `R-S3-grade-20261119-203623-62f5d9` · bàn: `K5-L3B-DAY10-Rua-PoCtoPilotGate1` · grader `lab10-1.0` · 0.255s
+- Ba mốc: base `R-S3-before-20261119-203623-62f5d9` · prepared `R-S3-prepared-20261119-203623-62f5d9` · after `R-S3-after-20261119-203623-62f5d9` (report + trace trong runs/)
 - Mốc prepared (cổng vòng 1): đã chốt `cb9f354e`, còn nguyên
-- Hash code đội (guards + monitors + switches + cổng vận hành): `e7cf286dd33d`
+- Hash code đội (guards + monitors + switches + cổng vận hành): `62f5d92e00b7`
 - Hash Bản tiêu chí chấp nhận: `abe188b49400` · đã ký: `abe188b49400` · KHÔNG ĐỔI
 - Thẻ đang kiểm: `S3` · dòng "Thẻ đã bốc" bàn ghi trong phiếu: S3 · khớp
 
 | Kiểm | Kết quả | Chi tiết |
 |---|---|---|
-| 1 integrity | ✅ | file khoá bị đổi: không |
+| 1 integrity | ❌ | file khoá bị đổi: ['data/tickets.jsonl', 'data/world.json', 'incidents/S3/card.json', 'incidents/S3/card.md', 'incidents/S3/tickets.jsonl', 'incidents/S3/world_patch.json', 'lab10/__init__.py', 'lab10/_gradectx.py', 'lab10/_noop_guards.py', 'lab10/agent.py', 'lab10/check_submission.py', 'lab10/checkpoint.py', 'lab10/criteria.py', 'lab10/eval.py', 'lab10/gate.py', 'lab10/grade.py', 'lab10/helpers.py', 'lab10/mock_llm.py', 'lab10/ops.py', 'lab10/tools.py', 'lab10/trace.py', 'lab10/world.py', 'tests/test_public.py'] |
 | 2 criteria | ✅ | đã ký, còn nguyên |
 | 3 visible | ❌ | base có vấn đề: True; after sạch: False; ticket còn hỏng: ['S3-43@11', 'S3-43@22', 'S3-43@33', 'S3-43@44', 'S3-43@55']; trần còn vượt: ['ROI 0.24 < ngưỡng bàn đặt 0.25'] |
 | 4 hidden | — | máy này không có bài kiểm tra ẩn (team chấm sẽ chạy sau buổi học) |
 | 5 regression | ✅ | bộ nền pass_rate 0.9909 → 1.0; ca mới hỏng: không |
-| 6 monitor | ✅ | metric mới: ['repeated_carrier_fault_attempt_rate', 'carrier_fault_write_rate']; sáng đèn: [('carrier_fault_write_rate', 'before', 0.509091, 0.833333), ('carrier_fault_write_rate', 'after', 0.461538, 0.666667)] |
+| 6 monitor | ✅ | metric mới: ['carrier_fault_write_rate']; sáng đèn: [('carrier_fault_write_rate', 'before', 0.509091, 0.833333), ('carrier_fault_write_rate', 'after', 0.461538, 0.666667)] |
 
 **Kinh doanh · vận hành · pháp lý trên gói sự cố bàn nhìn thấy** (tiền tính cho một ngày giả lập)
 
