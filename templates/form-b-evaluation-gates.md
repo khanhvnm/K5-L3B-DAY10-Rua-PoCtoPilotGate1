@@ -311,10 +311,12 @@ Mỗi con số kèm một câu lý do, lấy từ `data/world.json` → `ops_lim
 
 | Khoá | Giá trị bàn đặt | Lý do (một câu, có số) |
 |---|---|---|
-| `business.daily_refund_cap_vnd` | | |
-| `business.cost_budget_per_ticket_vnd` | | |
-| `business.pilot_scope` (all / warehouse / percent) | | |
-| `business.roi_min` | | |
+| `business.daily_refund_cap_vnd` | **1.500.000đ/ngày** | Giới hạn tự động thấp hơn ngân sách Finance **2.000.000đ/ngày** trong `ops_limits` **500.000đ** để giữ khoảng dự phòng; khoản làm vượt trần được chuyển người duyệt, không ghi tự động. |
+| `business.cost_budget_per_ticket_vnd` | **1.500đ/ticket** | `ops_limits.max_llm_cost_per_ticket_vnd` cho phép tối đa **1.500đ** tiền máy mỗi ticket; cổng này chặn đọc tiếp và chuyển người trước khi tiền máy vượt mức đó, còn **8.000đ/ticket** trong tiêu chí đã ký là ngưỡng **tổng** chi phí gồm cả duyệt và phí trực. |
+| `business.pilot_scope` (all / warehouse / percent) | **`warehouse`: `HN`, `DN`** (`percent`: 100 trong hai kho) | Baseline B1 ghi **20.000đ hoàn sai và 1 lỗi hãng oan ở HCM**, nên tạm loại HCM cùng các kho khác khỏi phạm vi tự động; chỉ xét HN và DN sau khi đánh giá riêng từng kho, xác nhận đủ ngưỡng an toàn **0** và không vượt tải duyệt/chi phí. Ticket ngoài phạm vi do người xử lý. |
+| `business.roi_min` | **0,25 (25%)** | Khớp tiêu chí đã ký: làm tay tốn **10.000đ/ticket** theo `ops_facts`; nếu tổng chi phí pilot đạt trần **8.000đ/ticket** và không có hoàn sai thì ROI tối thiểu `(10.000 − 8.000) / 8.000 = 0,25`; report báo vượt trần nếu thấp hơn. |
+
+**Điều kiện trước khi mở pilot:** Phạm vi `HN`, `DN` là đề xuất để thử và đo lại, chưa được chứng minh đạt tiêu chí chỉ bằng cách loại HCM từ baseline. Đọc report theo từng kho và toàn bộ luồng (kể cả tải người duyệt) sau khi đặt cổng; nếu còn hoàn sai/lỗi hãng oan, chi phí vượt ngưỡng hoặc hàng chờ ùn thì không chọn **Tiếp tục**. `pilot_scope` không thay thế cổng kiểm quyền hoàn hay ghi lỗi cho từng ticket.
 
 ### B7.5 · Câu 2.10 · Cổng con người, vận hành, pháp lý + Runbook phần 1–3
 
