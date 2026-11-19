@@ -20,12 +20,14 @@ rồi mới chạy đánh giá. Khối 1 không sửa code.
 
 ### Câu 1.1 · Một mục tiêu cấp hệ thống (khác "model trả lời đúng")
 
-> …
+> Giúp LogiX-VN xử lý yêu cầu hoàn tiền do giao trễ có căn cứ và có thể kiểm tra: hành động của trợ lý phù hợp với dữ liệu đơn hàng, tracking và chính sách; các ca chưa đủ căn cứ được chuyển cho người duyệt, nhằm giảm nguy cơ hoàn sai hoặc ghi lỗi oan cho hãng.
 
 ### Câu 1.2 · Mục tiêu nhìn từ hai người
 
-- Chị Oanh, kế toán đối soát (không dùng trợ lý, nhưng phải khớp sổ với hãng và shop mỗi tuần): …
-- Chị Hạnh, trưởng ca CSKH (phải duyệt những ca trợ lý chuyển sang): …
+- Chị Oanh, kế toán đối soát (không dùng trợ lý, nhưng phải khớp sổ với hãng và shop mỗi tuần):
+" Chị Oanh cần các khoản hoàn tiền và lỗi ghi cho hãng có căn cứ, khớp với sổ LogiX và dữ liệu của hãng/shop để đối soát hàng tuần; khi có sai lệch, chị cần truy ra được lý do "
+- Chị Hạnh, trưởng ca CSKH (phải duyệt những ca trợ lý chuyển sang):
+"Chị Hạnh cần các ca được chuyển lên có đủ thông tin và lý do rõ ràng để duyệt; số ca chờ cần phù hợp với năng lực xử lý của ca trực"
 
 ---
 
