@@ -14,6 +14,7 @@
 |   1 | Vũ Nam Khánh | 2A202604112 | Kỹ sư cổng | x |
 |   2 | Nguyễn Tuấn Anh | 2A202604089 | Vận hành và pháp lý |   |
 |   3 | Phạm Duy Thành | 2A202604075 | Sản phẩm và kinh doanh |   |
+|   4 |   |   |   |
 
 Ghi `members` trong `submission/submission.json` theo dạng `"HoVaTen-MSSV"`, khớp bảng trên.
 
